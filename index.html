@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HEROES Multiverse Battery: 18-Question Career Crossroads Diagnostic</title>
+<style>
+  :root {
+    --bg: #F8F9FA;
+    --card-bg: #FFFFFF;
+    --primary: #2B6CB0;
+    --primary-hover: #1A4971;
+    --text-main: #2D3748;
+    --text-muted: #718096;
+    --border: #E2E8F0;
+    --accent-sage: #E6F4EA;
+    --accent-sage-dark: #15803D;
+    --accent-blue: #EBF4FF;
+    --accent-blue-dark: #1D4ED8;
+    --accent-amber: #FEF3C7;
+    --accent-amber-dark: #B45309;
+    --accent-purple: #F3E8FF;
+    --accent-purple-dark: #6B21A8;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    background: var(--card-bg);
+    padding: 24px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+  }
+
+  h1 {
+    margin: 0 0 6px 0;
+    color: #1A365D;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+  }
+
+  p.subtitle {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  .progress-wrap {
+    background: var(--border);
+    border-radius: 999px;
+    height: 8px;
+    margin: 16px 0 8px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    background: var(--primary);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  .progress-text {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .domain-header {
+    background: #EDF2F7;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #4A5568;
+    margin: 24px 0 12px;
+  }
+
+  .question-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+
+  .q-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: #1A202C;
+    margin-bottom: 12px;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .option:hover {
+    background: #F7FAFC;
+    border-color: #CBD5E0;
+  }
+
+  .option input {
+    margin-top: 3px;
+    margin-right: 12px;
+    cursor: pointer;
+  }
+
+  .option label {
+    cursor: pointer;
+    font-size: 13.5px;
+    color: var(--text-main);
+    flex: 1;
+  }
+
+  button.submit-btn {
+    background: var(--primary);
+    color: #FFF;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 18px;
+    transition: background 0.2s;
+  }
+
+  button.submit-btn:hover {
+    background: var(--primary-hover);
+  }
+
+  #results-modal {
+    display: none;
+    background: var(--card-bg);
+    border: 2px solid var(--primary);
+    border-radius: 14px;
+    padding: 24px;
+    margin-top: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 16px 0;
+    text-align: center;
+  }
+
+  .score-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 4px;
+  }
+
+  .score-box strong {
+    display: block;
+    font-size: 20px;
+    color: #1A202C;
+  }
+
+  .score-box span {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .advice-card {
+    background: #F7FAFC;
+    border-left: 4px solid var(--primary);
+    border-radius: 6px;
+    padding: 14px;
+    margin-top: 16px;
+    font-size: 13.5px;
+  }
+
+  .oath-box {
+    background: var(--accent-sage);
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 18px;
+    font-style: italic;
+    font-size: 13px;
+    color: #14532D;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>HEROES Multiverse Battery</h1>
+    <p class="subtitle">18-Question Career Crossroads Diagnostic (Volume 3: HEROES in the Multiverse)</p>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-text" id="progressText">0 / 18 Scenarios Answered</div>
+  </header>
+
+  <form id="heroesForm">
+
+    <!-- DOMAIN 1: HOLISTIC ALIGNMENT -->
+    <div class="domain-header">Domain I: Holistic Alignment & Recovery Authenticity (H)</div>
+
+    <div class="question-card">
+      <div class="q-title">1. When it comes to sharing your lived experience, which environment feels most authentic right now?</div>
+      <div class="option"><input type="radio" name="q1" value="A" id="q1a" required><label for="q1a"><strong>A)</strong> Bridging lived experience with clinical terminology to help an established agency or CSB better understand recovery.</label></div>
+      <div class="option"><input type="radio" name="q1" value="B" id="q1b"><label for="q1b"><strong>B)</strong> Delivering immediate, unvarnished human connection on frontlines where peers are rare—such as on scene with EMS, post-overdose knock-and-talks, hospital ED bedside visits, or solo street outreach.</label></div>
+      <div class="option"><input type="radio" name="q1" value="C" id="q1c"><label for="q1c"><strong>C)</strong> Operating with 100% pure peer mutuality, completely free from medical models, clinical notes, or agency censorship.</label></div>
+      <div class="option"><input type="radio" name="q1" value="D" id="q1d"><label for="q1d"><strong>D)</strong> Guarding your authentic story at work while reserving your genuine recovery fire for off-the-clock projects and side ventures.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">2. What does "recovery culture" mean to you in your day-to-day work?</div>
+      <div class="option"><input type="radio" name="q2" value="A" id="q2a" required><label for="q2a"><strong>A)</strong> Systematically reforming institutional culture step-by-step from the inside out.</label></div>
+      <div class="option"><input type="radio" name="q2" value="B" id="q2b"><label for="q2b"><strong>B)</strong> Serving as a cultural ambassador in high-intensity medical or public safety spaces (like an MOUD clinic, primary care office, or 911 rig) that have never integrated peer support.</label></div>
+      <div class="option"><input type="radio" name="q2" value="C" id="q2c"><label for="q2c"><strong>C)</strong> Building an autonomous community table because existing systems will never fully accommodate pure peer self-determination.</label></div>
+      <div class="option"><input type="radio" name="q2" value="D" id="q2d"><label for="q2d"><strong>D)</strong> Protecting your personal recovery while tolerating a workplace environment that doesn't fully understand or value your role.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">3. How do you prefer to navigate your authentic recovery language with colleagues?</div>
+      <div class="option"><input type="radio" name="q3" value="A" id="q3a" required><label for="q3a"><strong>A)</strong> Teaching clinicians and treatment teams how to replace stigmatizing jargon with recovery-oriented phrasing.</label></div>
+      <div class="option"><input type="radio" name="q3" value="B" id="q3b"><label for="q3b"><strong>B)</strong> Translating street reality and harm reduction directly to emergency physicians, paramedics, or law enforcement officers on the fly.</label></div>
+      <div class="option"><input type="radio" name="q3" value="C" id="q3c"><label for="q3c"><strong>C)</strong> Speaking uncompromised peer language every day without ever having to justify it to clinical gatekeepers.</label></div>
+      <div class="option"><input type="radio" name="q3" value="D" id="q3d"><label for="q3d"><strong>D)</strong> Filtering your speech on the clock to avoid administrative scrutiny, while speaking freely only with trusted outside peer allies.</label></div>
+    </div>
+
+    <!-- DOMAIN 2: ECONOMIC VIABILITY -->
+    <div class="domain-header">Domain II: Economic Viability & Financial Runway (E)</div>
+
+    <div class="question-card">
+      <div class="q-title">4. How do you view your current paycheck, benefits, and retirement?</div>
+      <div class="option"><input type="radio" name="q4" value="A" id="q4a" required><label for="q4a"><strong>A)</strong> Essential institutional stability that allows me to build a sustainable, long-term career within public behavioral health.</label></div>
+      <div class="option"><input type="radio" name="q4" value="B" id="q4b"><label for="q4b"><strong>B)</strong> Hard-earned compensation for operating in high-stress, non-traditional, and potentially hazardous frontier environments (in the field, in rigs, or on the street).</label></div>
+      <div class="option"><input type="radio" name="q4" value="C" id="q4c"><label for="q4c"><strong>C)</strong> Something I am willing to hustle for (grants, contracts, fundraising) in exchange for complete independence and ownership.</label></div>
+      <div class="option"><input type="radio" name="q4" value="D" id="q4d"><label for="q4d"><strong>D)</strong> An "angel investment" funding my living expenses, personal savings, or certifications while I quietly build my exit strategy.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">5. If funding, grant renewals, or agency budgets get threatened, what is your instinct?</div>
+      <div class="option"><input type="radio" name="q5" value="A" id="q5a" required><label for="q5a"><strong>A)</strong> Advocate through internal administrative and Medicaid channels to prove our program's billable return on investment.</label></div>
+      <div class="option"><input type="radio" name="q5" value="B" id="q5b"><label for="q5b"><strong>B)</strong> Partner directly with emergency directors, hospital leadership, or city safety officials to prove our field intercepts save lives and wall-times.</label></div>
+      <div class="option"><input type="radio" name="q5" value="C" id="q5c"><label for="q5c"><strong>C)</strong> Write new foundation grants, pursue opioid abatement allocations, or launch peer-run service contracts.</label></div>
+      <div class="option"><input type="radio" name="q5" value="D" id="q5d"><label for="q5d"><strong>D)</strong> Keep your head down, protect your personal paycheck, and accelerate your timeline to take the leap.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">6. When considering financial risk versus professional autonomy:</div>
+      <div class="option"><input type="radio" name="q6" value="A" id="q6a" required><label for="q6a"><strong>A)</strong> I prefer the safety of state-backed retirement, predictable health insurance, and structured step-pay systems.</label></div>
+      <div class="option"><input type="radio" name="q6" value="B" id="q6b"><label for="q6b"><strong>B)</strong> I am comfortable with grant-funded frontier initiatives as long as the mission allows me to pioneer direct field work.</label></div>
+      <div class="option"><input type="radio" name="q6" value="C" id="q6c"><label for="q6c"><strong>C)</strong> I embrace financial volatility if it means holding 100% control over my organization's mission and budget design.</label></div>
+      <div class="option"><input type="radio" name="q6" value="D" id="q6d"><label for="q6d"><strong>D)</strong> I am currently tolerating low-autonomy work specifically because I cannot afford to lose my health insurance or benefits right now.</label></div>
+    </div>
+
+    <!-- DOMAIN 3: RESILIENCY BANDWIDTH -->
+    <div class="domain-header">Domain III: Resiliency Bandwidth & Systemic Strain (R)</div>
+
+    <div class="question-card">
+      <div class="q-title">7. Which specific type of workplace stress are you best equipped to handle right now?</div>
+      <div class="option"><input type="radio" name="q7" value="A" id="q7a" required><label for="q7a"><strong>A)</strong> Bureaucratic red tape, slow-moving leadership, and heavy electronic health record documentation.</label></div>
+      <div class="option"><input type="radio" name="q7" value="B" id="q7b"><label for="q7b"><strong>B)</strong> The isolation and emotional weight of being the "first and only" peer embedded in an ED, primary care clinic, MOUD program, or on solo street outreach.</label></div>
+      <div class="option"><input type="radio" name="q7" value="C" id="q7c"><label for="q7c"><strong>C)</strong> The entrepreneurial exhaustion of running an entire organization—payroll, compliance, grant deadlines, and community crisis.</label></div>
+      <div class="option"><input type="radio" name="q7" value="D" id="q7d"><label for="q7d"><strong>D)</strong> Emotional compartmentalization—delivering what the agency asks while saving your real creative fire for off-hours.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">8. When on-the-job tension builds, how does your nervous system respond?</div>
+      <div class="option"><input type="radio" name="q8" value="A" id="q8a" required><label for="q8a"><strong>A)</strong> I lean into supervision, policy review, and ethical frameworks to steady the ship within my agency.</label></div>
+      <div class="option"><input type="radio" name="q8" value="B" id="q8b"><label for="q8b"><strong>B)</strong> I decompress through rapid scene debriefs, partner co-regulation in the rig/clinic, or post-crisis field routines.</label></div>
+      <div class="option"><input type="radio" name="q8" value="C" id="q8c"><label for="q8c"><strong>C)</strong> I channel the friction into creative movement building—designing new independent programs to circumvent the bottleneck.</label></div>
+      <div class="option"><input type="radio" name="q8" value="D" id="q8d"><label for="q8d"><strong>D)</strong> I slip on my "civilian mask," do my job with professional excellence, and process the stress with outside peer side-kicks after hours.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">9. How do you handle feeling professionally misunderstood by your immediate colleagues?</div>
+      <div class="option"><input type="radio" name="q9" value="A" id="q9a" required><label for="q9a"><strong>A)</strong> I view it as an educational opportunity to advocate for peer core competencies in staff meetings.</label></div>
+      <div class="option"><input type="radio" name="q9" value="B" id="q9b"><label for="q9b"><strong>B)</strong> I earn their trust by demonstrating immediate, practical value on calls, bedside consults, and street intercepts.</label></div>
+      <div class="option"><input type="radio" name="q9" value="C" id="q9c"><label for="q9c"><strong>C)</strong> I don't waste time convincing them; I focus my energy on creating alternative, peer-governed community spaces.</label></div>
+      <div class="option"><input type="radio" name="q9" value="D" id="q9d"><label for="q9d"><strong>D)</strong> I expect to be misunderstood in this role; I detach emotionally so it doesn't drain my personal recovery.</label></div>
+    </div>
+
+    <!-- DOMAIN 4: OPPORTUNITY FOR LEGACY -->
+    <div class="domain-header">Domain IV: Opportunity for Legacy & Community Impact (O)</div>
+
+    <div class="question-card">
+      <div class="q-title">10. What kind of legacy do you most want to leave in the recovery movement?</div>
+      <div class="option"><input type="radio" name="q10" value="A" id="q10a" required><label for="q10a"><strong>A)</strong> An established, respected peer department permanently integrated into the institutional fabric of public behavioral healthcare.</label></div>
+      <div class="option"><input type="radio" name="q10" value="B" id="q10b"><label for="q10b"><strong>B)</strong> Proven blueprints that permanently open the doors of EMS, fire, primary care, MOUD clinics, and hospital EDs for future peer generations.</label></div>
+      <div class="option"><input type="radio" name="q10" value="C" id="q10c"><label for="q10c"><strong>C)</strong> A thriving, independent grassroots organization, RCO, peer respite, or harm-reduction center that stands on its own.</label></div>
+      <div class="option"><input type="radio" name="q10" value="D" id="q10d"><label for="q10d"><strong>D)</strong> A successful personal transition showing that peers can survive mismatched systems, fund their dreams, and emerge victorious.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">11. How do you define a true "win" at the end of a long work week?</div>
+      <div class="option"><input type="radio" name="q11" value="A" id="q11a" required><label for="q11a"><strong>A)</strong> An agency policy change, a preserved peer budget line, or an interdisciplinary team adopting person-centered language.</label></div>
+      <div class="option"><input type="radio" name="q11" value="B" id="q11b"><label for="q11b"><strong>B)</strong> A successful post-overdose knock-and-talk where someone survived, felt heard, or connected to harm reduction without arrest or stigma.</label></div>
+      <div class="option"><input type="radio" name="q11" value="C" id="q11c"><label for="q11c"><strong>C)</strong> Securing operational capital, launching a new mutual aid group, or cutting red tape to deliver direct, barrier-free community aid.</label></div>
+      <div class="option"><input type="radio" name="q11" value="D" id="q11d"><label for="q11d"><strong>D)</strong> Successfully completing all assigned duties, collecting your full paycheck, and spending Sunday afternoon building your LLC or future plans.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">12. Where do you feel your lived experience creates the deepest systemic change?</div>
+      <div class="option"><input type="radio" name="q12" value="A" id="q12a" required><label for="q12a"><strong>A)</strong> Influencing executive leadership, clinical directors, and Medicaid reviewers to recognize the peer model as a legitimate profession.</label></div>
+      <div class="option"><input type="radio" name="q12" value="B" id="q12b"><label for="q12b"><strong>B)</strong> Humanizing patients in high-acuity medical environments where people with substance use or mental health conditions are often written off.</label></div>
+      <div class="option"><input type="radio" name="q12" value="C" id="q12c"><label for="q12c"><strong>C)</strong> Reclaiming recovery leadership by placing power, funding, and decision-making directly into the hands of the community.</label></div>
+      <div class="option"><input type="radio" name="q12" value="D" id="q12d"><label for="q12d"><strong>D)</strong> Proving that lived experience gives us the resilience to endure bureaucratic detours while strategically preparing our next chapter.</label></div>
+    </div>
+
+    <!-- DOMAIN 5: EMPOWERMENT & AUTONOMY -->
+    <div class="domain-header">Domain V: Empowerment & Decision-Making Autonomy (E)</div>
+
+    <div class="question-card">
+      <div class="q-title">13. How much autonomy do you require over your day-to-day decisions?</div>
+      <div class="option"><input type="radio" name="q13" value="A" id="q13a" required><label for="q13a"><strong>A)</strong> Moderate autonomy—I am comfortable working within institutional hierarchies as long as peer values and scope are respected.</label></div>
+      <div class="option"><input type="radio" name="q13" value="B" id="q13b"><label for="q13b"><strong>B)</strong> High operational autonomy—I need the freedom to make quick, trauma-informed calls in the field, on the street, or at hospital bedsides.</label></div>
+      <div class="option"><input type="radio" name="q13" value="C" id="q13c"><label for="q13c"><strong>C)</strong> Total autonomy—I need to design culture, workflows, and policies without requiring non-peer clinical sign-off.</label></div>
+      <div class="option"><input type="radio" name="q13" value="D" id="q13d"><label for="q13d"><strong>D)</strong> Compartmentalized autonomy—I comply with institutional checklists on the clock, but hold 100% autonomy over my personal vision.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">14. When encountering broken workflows or clinical bottlenecks, what is your move?</div>
+      <div class="option"><input type="radio" name="q14" value="A" id="q14a" required><label for="q14a"><strong>A)</strong> Propose internal solutions to leadership and work within agency committees to reform the process from within.</label></div>
+      <div class="option"><input type="radio" name="q14" value="B" id="q14b"><label for="q14b"><strong>B)</strong> Pivot dynamically in the field—finding practical workarounds on scene or coordinating directly with street-level allies to meet the person's needs.</label></div>
+      <div class="option"><input type="radio" name="q14" value="C" id="q14c"><label for="q14c"><strong>C)</strong> Build an alternative model outside the institutional machine that bypasses the broken system altogether.</label></div>
+      <div class="option"><input type="radio" name="q14" value="D" id="q14d"><label for="q14d"><strong>D)</strong> Document the exact breakdown as market research on "what NOT to do" when you launch your own venture or leap to your next role.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">15. What is your relationship with clinical oversight and documentation?</div>
+      <div class="option"><input type="radio" name="q15" value="A" id="q15a" required><label for="q15a"><strong>A)</strong> I treat documentation as an art of advocacy, writing notes that satisfy Medicaid while protecting the dignity of the person served.</label></div>
+      <div class="option"><input type="radio" name="q15" value="B" id="q15b"><label for="q15b"><strong>B)</strong> I prioritize rapid field coordination, naloxone distribution, and warm handoffs, keeping documentation concise and focused on safety.</label></div>
+      <div class="option"><input type="radio" name="q15" value="C" id="q15c"><label for="q15c"><strong>C)</strong> I reject billable clinical EHR models entirely, using simple, human-centered recovery metrics that respect participant privacy.</label></div>
+      <div class="option"><input type="radio" name="q15" value="D" id="q15d"><label for="q15d"><strong>D)</strong> I complete every note to the letter of the law to keep my supervisor satisfied, but invest zero emotional attachment in the charting.</label></div>
+    </div>
+
+    <!-- DOMAIN 6: SUPPORT SYSTEMS -->
+    <div class="domain-header">Domain VI: Support Systems & Professional Alliances (S)</div>
+
+    <div class="question-card">
+      <div class="q-title">16. Who is your primary source of professional support and guidance?</div>
+      <div class="option"><input type="radio" name="q16" value="A" id="q16a" required><label for="q16a"><strong>A)</strong> Dedicated peer supervisors, recovery coordinators, and trusted clinical champions inside the agency.</label></div>
+      <div class="option"><input type="radio" name="q16" value="B" id="q16b"><label for="q16b"><strong>B)</strong> Field partners (paramedics, ED social workers, street outreach nurses) paired with external peer specialists who understand the frontier grind.</label></div>
+      <div class="option"><input type="radio" name="q16" value="C" id="q16c"><label for="q16c"><strong>C)</strong> Co-founders, community board members, grassroots advocates, and entrepreneurial mentors.</label></div>
+      <div class="option"><input type="radio" name="q16" value="D" id="q16d"><label for="q16d"><strong>D)</strong> A confidential, hand-picked alliance of 2–3 peer side-kicks who know your secret plans and hold your cape.</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">17. When you experience a "flipped lid" (amygdala hijack / survival mode), what brings you back?</div>
+      <div class="option"><input type="radio" name="q17" value="A" id="q17a" required><label for="q17a"><strong>A)</strong> Stepping into a dedicated "Quiet Lair" or haven in the clinic to regulate before re-engaging the team.</label></div>
+      <div class="option"><input type="radio" name="q17" value="B" id="q17b"><label for="q17b"><strong>B)</strong> Debriefing with your rig partner or taking a 10-minute walk outside the ED before the next call comes in.</label></div>
+      <div class="option"><input type="radio" name="q17" value="C" id="q17c"><label for="q17c"><strong>C)</strong> Stepping back to look at the big picture—remembering that you answer to the community, not a boss.</label></div>
+      <div class="option"><input type="radio" name="q17" value="D" id="q17d"><label for="q17d"><strong>D)</strong> Texting your STARS peer partners: "The bureaucracy is testing me today—remind me why I’m banking this paycheck."</label></div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-title">18. What does your ideal professional destination look like one year from today?</div>
+      <div class="option"><input type="radio" name="q18" value="A" id="q18a" required><label for="q18a"><strong>A)</strong> Serving as an anchored Peer Program Coordinator or Supervisor, mentoring peers and reforming agency culture.</label></div>
+      <div class="option"><input type="radio" name="q18" value="B" id="q18b"><label for="q18b"><strong>B)</strong> Leading an embedded frontier unit—whether expanding EMS co-response, post-overdose outreach, or hospital peer triage.</label></div>
+      <div class="option"><input type="radio" name="q18" value="C" id="q18c"><label for="q18c"><strong>C)</strong> Directing your own peer-run 501(c)(3), recovery center, or independent LLC movement full-time.</label></div>
+      <div class="option"><input type="radio" name="q18" value="D" id="q18d"><label for="q18d"><strong>D)</strong> Reaching your savings or milestone threshold, shedding your "Clark Kent" cover, and executing your planned leap.</label></div>
+    </div>
+
+    <button type="button" class="submit-btn" onclick="calculateResults()">REVEAL MY MULTIVERSE PROFILE</button>
+  </form>
+
+  <!-- RESULTS CARD -->
+  <div id="results-modal">
+    <div id="badge" class="badge"></div>
+    <h2 id="resultTitle" style="margin-top:0;"></h2>
+    <p id="resultDesc"></p>
+
+    <div class="score-grid">
+      <div class="score-box"><strong id="valA">0</strong><span>Visionary</span></div>
+      <div class="score-box"><strong id="valB">0</strong><span>Trailblazer</span></div>
+      <div class="score-box"><strong id="valC">0</strong><span>Innovator</span></div>
+      <div class="score-box"><strong id="valD">0</strong><span>Secret ID</span></div>
+    </div>
+
+    <div id="resultAdvice" class="advice-card"></div>
+
+    <div class="oath-box">
+      "My lived experience is a superpower, never a clinical liability. I will keep my lid down, protect my scope, and refuse to let survival mode dictate my destiny. We are HEROES in the Multiverse!"
+    </div>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('heroesForm');
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+
+  form.addEventListener('change', () => {
+    let answered = 0;
+    for (let i = 1; i <= 18; i++) {
+      if (form['q' + i].value) answered++;
+    }
+    const pct = Math.round((answered / 18) * 100);
+    progressBar.style.width = pct + '%';
+    progressText.innerText = `${answered} / 18 Scenarios Answered (${pct}%)`;
+  });
+
+  function calculateResults() {
+    let counts = { A: 0, B: 0, C: 0, D: 0 };
+    for (let i = 1; i <= 18; i++) {
+      const val = form['q' + i].value;
+      if (!val) {
+        alert("Please answer Question " + i + " before revealing your profile!");
+        document.getElementsByName('q' + i)[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      counts[val]++;
+    }
+
+    document.getElementById('valA').innerText = counts.A;
+    document.getElementById('valB').innerText = counts.B;
+    document.getElementById('valC').innerText = counts.C;
+    document.getElementById('valD').innerText = counts.D;
+
+    const modal = document.getElementById('results-modal');
+    const badge = document.getElementById('badge');
+    const title = document.getElementById('resultTitle');
+    const desc = document.getElementById('resultDesc');
+    const advice = document.getElementById('resultAdvice');
+
+    // Strategic Diagnostic Logic:
+    // If D is >= 6 or D is highest, Secret Identity overlay is activated
+    if (counts.D >= 6 || (counts.D > counts.A && counts.D > counts.B && counts.D > counts.C)) {
+      badge.style.background = 'var(--accent-amber)';
+      badge.style.color = 'var(--accent-amber-dark)';
+      badge.innerText = 'TRANSITIONAL OVERLAY ACTIVE';
+      title.innerText = 'The Secret Identity (Strategic Incubator)';
+      desc.innerText = 'You are currently in a role that does not fully fit your authentic peer identity, but you are intentionally using its stability, paycheck, and benefits to bide time, gather system intel, and fund your future leap. You are not stuck—you are an undercover founder utilizing institutional runway.';
+      advice.innerHTML = '<strong>Next 30-Day Move:</strong> Set a strict, objective sunset milestone ($5,000 saved, LLC filed, or calendar date). Activate your STARS Alliance immediately so you do not absorb chronic systemic friction without an off-ramp.';
+    } else if (counts.C >= counts.A && counts.C >= counts.B) {
+      badge.style.background = 'var(--accent-sage)';
+      badge.style.color = 'var(--accent-sage-dark)';
+      badge.innerText = 'PRIMARY DESTINATION';
+      title.innerText = 'The Innovator (Movement Founder)';
+      desc.innerText = 'You are an ecosystem architect called to build what does not yet exist. You thrive on uncompromised peer fidelity, grassroots community organizing, and entrepreneurship—launching RCOs, peer-run nonprofits, or independent LLCs to fill voids left by clinical machines.';
+      advice.innerHTML = '<strong>Next 30-Day Move:</strong> Draft your 30-day business plan and scout municipal opioid abatement or foundation grants. If you are funding this via a day job, recognize that you are wearing your Secret Identity mask right now!';
+    } else if (counts.B >= counts.A) {
+      badge.style.background = 'var(--accent-blue)';
+      badge.style.color = 'var(--accent-blue-dark)';
+      badge.innerText = 'PRIMARY DESTINATION';
+      title.innerText = 'The Trailblazer (Frontier Specialist)';
+      desc.innerText = 'You boldly go where no peer has gone before. Whether on scene with EMS, conducting post-overdose follow-ups with a Quick Response Team, walking solo street outreach, or serving as the "only one" in an emergency department or MOUD clinic—you bridge high-acuity crisis with lived recovery.';
+      advice.innerHTML = '<strong>Next 30-Day Move:</strong> Seek out external peer mutual supervision (STARS) outside your emergency agency to protect against the isolation and compassion fatigue of being the sole ambassador on shift.';
+    } else {
+      badge.style.background = 'var(--accent-purple)';
+      badge.style.color = 'var(--accent-purple-dark)';
+      badge.innerText = 'PRIMARY DESTINATION';
+      title.innerText = 'The Visionary (Systemic Reformer)';
+      desc.innerText = 'You have the institutional wisdom, patience, and political acumen to change behavioral health from within. You see the agency’s vision, align with it, and work to reform CSBs, state hospitals, and clinic cultures while expanding peer leadership from the inside out.';
+      advice.innerHTML = '<strong>Next 30-Day Move:</strong> Run a VISION audit to safeguard your non-clinical scope (Armor of Integrity) and connect with administrative champions to defend peer units against Medicaid metric drift.';
+    }
+
+    modal.style.display = 'block';
+    modal.scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
