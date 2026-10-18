@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HEROES Multiverse Battery: 18-Question Career Crossroads Diagnostic</title>
+<title>HEROES Multiverse Battery: 18-Question Career Diagnostic</title>
 <style>
   :root {
     --bg: #F8F9FA;
@@ -13,14 +13,7 @@
     --text-main: #2D3748;
     --text-muted: #718096;
     --border: #E2E8F0;
-    --accent-sage: #E6F4EA;
-    --accent-sage-dark: #15803D;
-    --accent-blue: #EBF4FF;
-    --accent-blue-dark: #1D4ED8;
-    --accent-amber: #FEF3C7;
-    --accent-amber-dark: #B45309;
-    --accent-purple: #F3E8FF;
-    --accent-purple-dark: #6B21A8;
+    --gold: #D69E2E;
   }
 
   body {
@@ -37,14 +30,24 @@
     margin: 0 auto;
   }
 
+  /* Comic-style Banner */
   header {
     text-align: center;
     background: var(--card-bg);
     padding: 24px 20px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
+    border-radius: 14px;
+    border: 2px solid var(--border);
     margin-bottom: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 6px;
+    background: linear-gradient(90deg, #3182CE, #38A169, #D69E2E, #805AD5);
   }
 
   h1 {
@@ -63,13 +66,13 @@
   .progress-wrap {
     background: var(--border);
     border-radius: 999px;
-    height: 8px;
+    height: 10px;
     margin: 16px 0 8px;
     overflow: hidden;
   }
 
   .progress-bar {
-    background: var(--primary);
+    background: linear-gradient(90deg, #3182CE, #38A169);
     height: 100%;
     width: 0%;
     transition: width 0.3s ease;
@@ -78,18 +81,19 @@
   .progress-text {
     font-size: 12px;
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .domain-header {
     background: #EDF2F7;
+    border-left: 5px solid var(--primary);
     padding: 8px 14px;
-    border-radius: 8px;
-    font-weight: 700;
+    border-radius: 4px;
+    font-weight: 800;
     font-size: 13px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: #4A5568;
+    color: #2D3748;
     margin: 24px 0 12px;
   }
 
@@ -99,11 +103,11 @@
     border-radius: 12px;
     padding: 18px 20px;
     margin-bottom: 14px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
   }
 
   .q-title {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 15px;
     color: #1A202C;
     margin-bottom: 12px;
@@ -117,12 +121,13 @@
     border-radius: 8px;
     margin-bottom: 8px;
     cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
+    transition: all 0.15s ease;
   }
 
   .option:hover {
     background: #F7FAFC;
     border-color: #CBD5E0;
+    transform: translateX(2px);
   }
 
   .option input {
@@ -139,94 +144,158 @@
   }
 
   button.submit-btn {
-    background: var(--primary);
+    background: linear-gradient(135deg, #2B6CB0 0%, #1A4971 100%);
     color: #FFF;
     border: none;
-    padding: 16px 24px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 700;
+    padding: 18px 24px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
     cursor: pointer;
     width: 100%;
-    margin-top: 18px;
-    transition: background 0.2s;
+    margin-top: 20px;
+    box-shadow: 0 6px 16px rgba(43, 108, 176, 0.3);
+    transition: all 0.2s ease;
   }
 
   button.submit-btn:hover {
-    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(43, 108, 176, 0.4);
   }
 
+  /* 🎉 HEROIC REVEAL CARD */
   #results-modal {
     display: none;
     background: var(--card-bg);
-    border: 2px solid var(--primary);
-    border-radius: 14px;
-    padding: 24px;
-    margin-top: 24px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border: 3px solid var(--primary);
+    border-radius: 18px;
+    padding: 28px;
+    margin-top: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+    animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes popUp {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .hero-crest-container {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .hero-crest {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(0,0,0,0.1);
+    animation: pulseGlow 2s infinite alternate;
+  }
+
+  @keyframes pulseGlow {
+    0% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(43,108,176,0.3)); }
+    100% { transform: scale(1.06); filter: drop-shadow(0 0 14px rgba(43,108,176,0.6)); }
   }
 
   .badge {
     display: inline-block;
-    padding: 4px 12px;
+    padding: 6px 16px;
     border-radius: 20px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .hero-title {
+    font-size: 26px;
+    font-weight: 900;
+    margin: 4px 0 10px;
+    letter-spacing: -0.5px;
+    text-align: center;
+  }
+
+  /* Hero Power Meters */
+  .meter-card {
+    background: #F7FAFC;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    margin: 18px 0;
+  }
+
+  .meter-row {
     margin-bottom: 10px;
   }
 
-  .score-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    margin: 16px 0;
-    text-align: center;
+  .meter-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
   }
 
-  .score-box {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 4px;
+  .meter-track {
+    background: #E2E8F0;
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
   }
 
-  .score-box strong {
-    display: block;
-    font-size: 20px;
-    color: #1A202C;
-  }
-
-  .score-box span {
-    font-size: 11px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    font-weight: 600;
+  .meter-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    transition: width 1s ease-out;
   }
 
   .advice-card {
-    background: #F7FAFC;
-    border-left: 4px solid var(--primary);
-    border-radius: 6px;
-    padding: 14px;
+    background: #FFFFFF;
+    border-left: 5px solid var(--primary);
+    border-radius: 8px;
+    padding: 16px;
     margin-top: 16px;
-    font-size: 13.5px;
+    font-size: 14px;
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
 
   .oath-box {
-    background: var(--accent-sage);
-    border-radius: 8px;
-    padding: 14px;
-    margin-top: 18px;
+    background: #E6F4EA;
+    border: 1px dashed #2E7D32;
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 20px;
     font-style: italic;
-    font-size: 13px;
+    font-size: 13.5px;
     color: #14532D;
     text-align: center;
+    position: relative;
+  }
+
+  /* Particle Confetti Canvas overlay */
+  #confettiCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
   }
 </style>
 </head>
 <body>
+
+<canvas id="confettiCanvas"></canvas>
 
 <div class="container">
   <header>
@@ -237,7 +306,6 @@
   </header>
 
   <form id="heroesForm">
-
     <!-- DOMAIN 1: HOLISTIC ALIGNMENT -->
     <div class="domain-header">Domain I: Holistic Alignment & Recovery Authenticity (H)</div>
 
@@ -400,25 +468,50 @@
       <div class="option"><input type="radio" name="q18" value="D" id="q18d"><label for="q18d"><strong>D)</strong> Reaching your savings or milestone threshold, shedding your "Clark Kent" cover, and executing your planned leap.</label></div>
     </div>
 
-    <button type="button" class="submit-btn" onclick="calculateResults()">REVEAL MY MULTIVERSE PROFILE</button>
+    <button type="button" class="submit-btn" onclick="revealSuperHeroProfile()">⚡ REVEAL MY MULTIVERSE DESTINY</button>
   </form>
 
-  <!-- RESULTS CARD -->
+  <!-- SPLASHY HERO RESULTS MODAL -->
   <div id="results-modal">
-    <div id="badge" class="badge"></div>
-    <h2 id="resultTitle" style="margin-top:0;"></h2>
-    <p id="resultDesc"></p>
+    <div class="hero-crest-container">
+      <div id="heroCrest" class="hero-crest"></div>
+    </div>
 
-    <div class="score-grid">
-      <div class="score-box"><strong id="valA">0</strong><span>Visionary</span></div>
-      <div class="score-box"><strong id="valB">0</strong><span>Trailblazer</span></div>
-      <div class="score-box"><strong id="valC">0</strong><span>Innovator</span></div>
-      <div class="score-box"><strong id="valD">0</strong><span>Secret ID</span></div>
+    <div style="text-align: center;">
+      <div id="badge" class="badge"></div>
+      <h2 id="resultTitle" class="hero-title"></h2>
+    </div>
+
+    <p id="resultDesc" style="font-size: 15px; color: #4A5568; line-height: 1.6; text-align: center;"></p>
+
+    <!-- Superpower Meter -->
+    <div class="meter-card">
+      <div style="font-weight: 800; font-size: 13px; text-transform: uppercase; margin-bottom: 12px; color: #2D3748; text-align: center;">
+        ⚡ Multiverse Resonance Breakdown
+      </div>
+
+      <div class="meter-row">
+        <div class="meter-label-row"><span>The Visionary (Path A)</span><span id="pctA">0%</span></div>
+        <div class="meter-track"><div id="fillA" class="meter-fill" style="background:#805AD5;"></div></div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-label-row"><span>The Trailblazer (Path B)</span><span id="pctB">0%</span></div>
+        <div class="meter-track"><div id="fillB" class="meter-fill" style="background:#3182CE;"></div></div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-label-row"><span>The Innovator (Path C)</span><span id="pctC">0%</span></div>
+        <div class="meter-track"><div id="fillC" class="meter-fill" style="background:#38A169;"></div></div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-label-row"><span>The Secret Identity (Overlay D)</span><span id="pctD">0%</span></div>
+        <div class="meter-track"><div id="fillD" class="meter-fill" style="background:#D69E2E;"></div></div>
+      </div>
     </div>
 
     <div id="resultAdvice" class="advice-card"></div>
 
     <div class="oath-box">
+      <strong>🦸 The Hero's Oath:</strong><br>
       "My lived experience is a superpower, never a clinical liability. I will keep my lid down, protect my scope, and refuse to let survival mode dictate my destiny. We are HEROES in the Multiverse!"
     </div>
   </div>
@@ -429,6 +522,7 @@
   const progressBar = document.getElementById('progressBar');
   const progressText = document.getElementById('progressText');
 
+  // Real-time progress bar tracking
   form.addEventListener('change', () => {
     let answered = 0;
     for (let i = 1; i <= 18; i++) {
@@ -439,63 +533,180 @@
     progressText.innerText = `${answered} / 18 Scenarios Answered (${pct}%)`;
   });
 
-  function calculateResults() {
+  // Native Web Audio API Hero Fanfare (No external mp3 needed!)
+  function playHeroFanfare() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      
+      const chords = [
+        { freq: 261.63, time: 0, dur: 0.2 },    // C4
+        { freq: 329.63, time: 0.18, dur: 0.2 }, // E4
+        { freq: 392.00, time: 0.36, dur: 0.25 },// G4
+        { freq: 523.25, time: 0.55, dur: 0.6 }  // C5 (Hold triumph)
+      ];
+
+      chords.forEach(note => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(note.freq, ctx.currentTime + note.time);
+        gain.gain.setValueAtTime(0.18, ctx.currentTime + note.time);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + note.time + note.dur);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + note.time);
+        osc.stop(ctx.currentTime + note.time + note.dur);
+      });
+    } catch(e) { /* Audio fallback silent */ }
+  }
+
+  // Lightweight Particle Canvas Engine
+  function launchConfetti() {
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ['#3182CE', '#38A169', '#D69E2E', '#805AD5', '#E53E3E', '#FFD700'];
+    const particles = [];
+
+    for (let i = 0; i < 90; i++) {
+      particles.push({
+        x: canvas.width / 2,
+        y: canvas.height * 0.45,
+        vx: (Math.random() - 0.5) * 18,
+        vy: (Math.random() - 0.7) * 20,
+        size: Math.random() * 8 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rotation: Math.random() * 360,
+        rSpeed: (Math.random() - 0.5) * 10,
+        alpha: 1
+      });
+    }
+
+    let frame = 0;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.45; // Gravity
+        p.rotation += p.rSpeed;
+        p.alpha -= 0.012;
+
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
+      });
+
+      frame++;
+      if (frame < 100) {
+        requestAnimationFrame(animate);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    animate();
+  }
+
+  function revealSuperHeroProfile() {
     let counts = { A: 0, B: 0, C: 0, D: 0 };
     for (let i = 1; i <= 18; i++) {
       const val = form['q' + i].value;
       if (!val) {
-        alert("Please answer Question " + i + " before revealing your profile!");
+        alert("Hero Alert: Please answer Question " + i + " before unlocking your destiny!");
         document.getElementsByName('q' + i)[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
       counts[val]++;
     }
 
-    document.getElementById('valA').innerText = counts.A;
-    document.getElementById('valB').innerText = counts.B;
-    document.getElementById('valC').innerText = counts.C;
-    document.getElementById('valD').innerText = counts.D;
+    // Play sounds & fireworks
+    playHeroFanfare();
+    launchConfetti();
+
+    // Calculate Percentages for Meters
+    const pctA = Math.round((counts.A / 18) * 100);
+    const pctB = Math.round((counts.B / 18) * 100);
+    const pctC = Math.round((counts.C / 18) * 100);
+    const pctD = Math.round((counts.D / 18) * 100);
+
+    document.getElementById('pctA').innerText = `${counts.A} (${pctA}%)`;
+    document.getElementById('pctB').innerText = `${counts.B} (${pctB}%)`;
+    document.getElementById('pctC').innerText = `${counts.C} (${pctC}%)`;
+    document.getElementById('pctD').innerText = `${counts.D} (${pctD}%)`;
+
+    setTimeout(() => {
+      document.getElementById('fillA').style.width = pctA + '%';
+      document.getElementById('fillB').style.width = pctB + '%';
+      document.getElementById('fillC').style.width = pctC + '%';
+      document.getElementById('fillD').style.width = pctD + '%';
+    }, 100);
 
     const modal = document.getElementById('results-modal');
+    const crest = document.getElementById('heroCrest');
     const badge = document.getElementById('badge');
     const title = document.getElementById('resultTitle');
     const desc = document.getElementById('resultDesc');
     const advice = document.getElementById('resultAdvice');
 
-    // Strategic Diagnostic Logic:
-    // If D is >= 6 or D is highest, Secret Identity overlay is activated
+    // Crest SVGs
+    const shieldSVG = `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
+    const starCompassSVG = `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15 9 22 12 15 15 12 22 9 15 2 12 9 9 12 2"/></svg>`;
+    const flameSVG = `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>`;
+    const maskSVG = `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="2"><path d="M2 10s3-4 10-4 10 4 10 4-3 7-10 7-10-7-10-7z"/><circle cx="7" cy="10" r="2"/><circle cx="17" cy="10" r="2"/></svg>`;
+
+    // Strategic Diagnostic Profile Selection
     if (counts.D >= 6 || (counts.D > counts.A && counts.D > counts.B && counts.D > counts.C)) {
-      badge.style.background = 'var(--accent-amber)';
-      badge.style.color = 'var(--accent-amber-dark)';
-      badge.innerText = 'TRANSITIONAL OVERLAY ACTIVE';
+      crest.style.background = 'linear-gradient(135deg, #D69E2E, #B7791F)';
+      crest.innerHTML = maskSVG;
+      badge.style.background = '#FEF3C7';
+      badge.style.color = '#B45309';
+      badge.innerText = 'TRANSITIONAL OVERLAY ACTIVATED';
       title.innerText = 'The Secret Identity (Strategic Incubator)';
-      desc.innerText = 'You are currently in a role that does not fully fit your authentic peer identity, but you are intentionally using its stability, paycheck, and benefits to bide time, gather system intel, and fund your future leap. You are not stuck—you are an undercover founder utilizing institutional runway.';
-      advice.innerHTML = '<strong>Next 30-Day Move:</strong> Set a strict, objective sunset milestone ($5,000 saved, LLC filed, or calendar date). Activate your STARS Alliance immediately so you do not absorb chronic systemic friction without an off-ramp.';
+      title.style.color = '#B45309';
+      desc.innerText = 'You are currently in a role that does not fully fit your authentic peer identity, but you are intentionally using its stability, paycheck, and benefits to bide time, gather system intel, and fund your future leap. You are not stuck—you are an undercover founder utilizing institutional runway!';
+      advice.innerHTML = '<strong>🛡️ Next 30-Day Mission:</strong> Establish a strict sunset milestone ($5,000 saved, LLC filed, or target calendar date). Activate your STARS Alliance immediately so you do not absorb chronic systemic friction without an off-ramp.';
     } else if (counts.C >= counts.A && counts.C >= counts.B) {
-      badge.style.background = 'var(--accent-sage)';
-      badge.style.color = 'var(--accent-sage-dark)';
-      badge.innerText = 'PRIMARY DESTINATION';
+      crest.style.background = 'linear-gradient(135deg, #38A169, #276749)';
+      crest.innerHTML = flameSVG;
+      badge.style.background = '#E6F4EA';
+      badge.style.color = '#15803D';
+      badge.innerText = 'PRIMARY CAREER DESTINATION';
       title.innerText = 'The Innovator (Movement Founder)';
-      desc.innerText = 'You are an ecosystem architect called to build what does not yet exist. You thrive on uncompromised peer fidelity, grassroots community organizing, and entrepreneurship—launching RCOs, peer-run nonprofits, or independent LLCs to fill voids left by clinical machines.';
-      advice.innerHTML = '<strong>Next 30-Day Move:</strong> Draft your 30-day business plan and scout municipal opioid abatement or foundation grants. If you are funding this via a day job, recognize that you are wearing your Secret Identity mask right now!';
+      title.style.color = '#15803D';
+      desc.innerText = 'You are an ecosystem architect called to build what does not yet exist! You thrive on uncompromised peer fidelity, grassroots organizing, and entrepreneurship—launching RCOs, peer-run nonprofits, or independent LLCs to fill voids left by clinical machines.';
+      advice.innerHTML = '<strong>🚀 Next 30-Day Mission:</strong> Draft your 30-day business plan and scout municipal opioid abatement or foundation grants. If you are funding this via a day job, recognize that you are wearing your Secret Identity mask right now!';
     } else if (counts.B >= counts.A) {
-      badge.style.background = 'var(--accent-blue)';
-      badge.style.color = 'var(--accent-blue-dark)';
-      badge.innerText = 'PRIMARY DESTINATION';
+      crest.style.background = 'linear-gradient(135deg, #3182CE, #2B6CB0)';
+      crest.innerHTML = starCompassSVG;
+      badge.style.background = '#EBF4FF';
+      badge.style.color = '#1D4ED8';
+      badge.innerText = 'PRIMARY CAREER DESTINATION';
       title.innerText = 'The Trailblazer (Frontier Specialist)';
-      desc.innerText = 'You boldly go where no peer has gone before. Whether on scene with EMS, conducting post-overdose follow-ups with a Quick Response Team, walking solo street outreach, or serving as the "only one" in an emergency department or MOUD clinic—you bridge high-acuity crisis with lived recovery.';
-      advice.innerHTML = '<strong>Next 30-Day Move:</strong> Seek out external peer mutual supervision (STARS) outside your emergency agency to protect against the isolation and compassion fatigue of being the sole ambassador on shift.';
+      title.style.color = '#1D4ED8';
+      desc.innerText = 'You boldly go where no peer has gone before! Whether on scene with EMS, conducting post-overdose follow-ups with a Quick Response Team, walking solo street outreach, or serving as the "only one" in an emergency department or MOUD clinic—you bridge high-acuity crisis with lived recovery.';
+      advice.innerHTML = '<strong>🚑 Next 30-Day Mission:</strong> Seek out external peer mutual supervision (STARS) outside your emergency agency to protect against the isolation and compassion fatigue of being the sole ambassador on shift.';
     } else {
-      badge.style.background = 'var(--accent-purple)';
-      badge.style.color = 'var(--accent-purple-dark)';
-      badge.innerText = 'PRIMARY DESTINATION';
+      crest.style.background = 'linear-gradient(135deg, #805AD5, #553C9A)';
+      crest.innerHTML = shieldSVG;
+      badge.style.background = '#F3E8FF';
+      badge.style.color = '#6B21A8';
+      badge.innerText = 'PRIMARY CAREER DESTINATION';
       title.innerText = 'The Visionary (Systemic Reformer)';
-      desc.innerText = 'You have the institutional wisdom, patience, and political acumen to change behavioral health from within. You see the agency’s vision, align with it, and work to reform CSBs, state hospitals, and clinic cultures while expanding peer leadership from the inside out.';
-      advice.innerHTML = '<strong>Next 30-Day Move:</strong> Run a VISION audit to safeguard your non-clinical scope (Armor of Integrity) and connect with administrative champions to defend peer units against Medicaid metric drift.';
+      title.style.color = '#6B21A8';
+      desc.innerText = 'You have the institutional wisdom, patience, and political acumen to change behavioral health from within! You see the agency’s vision, align with it, and work to reform CSBs, state hospitals, and clinic cultures while expanding peer leadership from the inside out.';
+      advice.innerHTML = '<strong>🏛️ Next 30-Day Mission:</strong> Run a VISION audit to safeguard your non-clinical scope (Armor of Integrity) and connect with administrative champions to defend peer units against Medicaid metric drift.';
     }
 
     modal.style.display = 'block';
-    modal.scrollIntoView({ behavior: 'smooth' });
+    modal.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 </script>
 </body>
